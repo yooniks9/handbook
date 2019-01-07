@@ -1,0 +1,21 @@
+	<button
+        class="btn btn-default oc-icon-file-excel-o"
+        disabled="disabled"
+        onclick="$(this).data('request-data', {
+            checked: $('.control-list').listWidget('getChecked')
+        })"
+        data-request="onExportTsv"
+        data-request-confirm="Do you want to create TSV ?"
+        data-trigger-action="enable"
+        data-trigger=".control-list input[type=checkbox]"
+        data-trigger-condition="checked"
+        data-request-success="downloadTsv();"
+        data-stripe-load-indicator>
+        Export
+    </button>
+	<script>
+		var parts = window.location.pathname.split( '/' );
+		function downloadTsv() {
+		    window.open(window.location.origin+'/'+parts[1]+'/storage/app/media/dealers/export.tsv', '_blank');
+		}
+	</script>
