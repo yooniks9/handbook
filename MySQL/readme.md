@@ -6,6 +6,44 @@ update products INNER JOIN manufacturers
     where products.manufacturer = manufacturers.name
 ```
 
+```
+UPDATE tableA 
+SET tableA.id = (
+    SELECT tableB.id 
+    FROM tableB
+    WHERE tableB.model_number = tableA.model_number
+);
+```
+
+```
+UPDATE tableA
+INNER JOIN tableA ON tableA.model_number = tableA.model_number
+SET tableA.id = tableB.id
+WHERE tableA.model_number = tableB.model_number
+```
+
+```
+UPDATE    tableA t,
+          tableB s
+SET       tableA.id = tableB.id
+WHERE     t.model_number = s.model_number
+```
+
+```
+UPDATE tableA
+SET tableA.id = (
+    SELECT id
+    FROM tableB
+    WHERE tableB.model_number = tableA.model_number
+);
+```
+
+```
+UPDATE tableA INNER JOIN tableB
+    ON tableB.model_number collate utf8_general_ci = tableA.model_number collate utf8_general_ci
+SET tableA.id = tableB.id
+```
+
 ## Left Join
 
 ```
